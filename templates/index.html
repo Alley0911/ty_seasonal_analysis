@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台风季节活动分析</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/new.css">
+    <script src="../static/js/jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!-- 头部 -->
+        <div class="top">
+            <h1 class="title"><strong>台风季节活动分析</h1>
+        </div>
+
+        <!-- 下部内容区 -->
+        <div class="contain">
+
+            {#顶部数据菜单区#}
+            <div class="top_menu">
+                <li><strong> 数 据</strong></li>
+                <li class="data_menu_title" index="reanalyse"><a href="#">再分析数据</a>
+                    <ul class="data_menu_list">
+                        <li index="era5_monthly">ERA5月平均</li>
+{#                        <li>FNL</li>#}
+                    </ul>
+                </li>
+                <li class="data_menu_title" index="ty"><a href="#">台风最佳路径集</a>
+                    <ul class="data_menu_list">
+                        <li index="ty_cma">CMA</li>
+                    </ul>
+                </li>
+            </div>
+
+            <!-- 左侧菜单栏 -->
+            <div class="left">
+
+                {#顶部数据名称#}
+                <div class="data_name">ERA5_Monthly</div>
+
+                <!-- 变量和层次盒子-->
+                <div class="var_level_box">
+
+                    <!-- 左半边变量盒子-->
+                    <div class="var_list_box">
+
+                        <!--对于ERA5的变量种类-->
+                        <form method="POST" index="era5_monthly" class="var_list">
+                            <table>
+                                <tr>
+                                    <th>变量</th>
+                                </tr>
+                                <!-- 0 1 2 3 -->
+                                <!-- 无定义 850 500 200 -->
+                                <tr>
+                                    <td><label><input type="radio" name="var_type" levels="0" value="sst">海温</label></td>
+                                </tr>
+                                <tr>
+                                    <td><label><input type="radio" name="var_type" levels="0" value="sst_anomaly">海温异常</label></td>
+                                </tr>
+                                <tr>
+                                    <td><label><input type="radio" name="var_type" levels="2" value="height">高度</label></td>
+                                </tr>
+                                <tr>
+                                    <td><label><input type="radio" name="var_type" levels="13" value="wind">风</label></td>
+                                </tr>
+                            </table>
+                        </form>
+
+                        <!--对于台风最佳路径集的变量种类-->
+                        <form method="POST" index="ty" style="display: none;" class="var_list">
+                            <table>
+                                <tr>
+                                    <th>变量</th>
+                                </tr>
+
+                                <tr>
+                                    <td><label><input type="radio" name="var_type" levels="0" value="frequency">频数</label></td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+
+                    <!--层次的种类-->
+                    <div class="level_box">
+                        <form method="POST">
+                                <tr>
+                                    <th>层次</th>
+                                </tr>
+                                <p style="display:none; ">
+                                    <label ><input type="radio" name="level_type" value="no_level">无定义</label>
+                                </p >                                
+                                <p style="display:none; ">
+                                    <label ><input type="radio" name="level_type" value="850hPa">850hPa</label>
+                                </p>                                
+                                <p style="display:none; ">
+                                    <label ><input type="radio" name="level_type" value="500hPa">500hPa</label>
+                                </p>  
+                                <p style="display:none; ">
+                                    <label ><input type="radio" name="level_type" value="200hPa">200hPa</label>
+                                </p>
+                        </form>
+                    </div>
+                </div>
+
+                <!--时间的box-->
+                <div class="time_box">
+                    <form method="POST">
+                        <table class="time">
+                            <tr>
+                                <th colspan="2">时间</th>
+                            </tr>
+                            <tr>
+                                <td>起始年份:
+                                    <select id="start_year" value="起始年份">
+                                        <script>
+                                            for (let m = 1981; m < 2020; m++) {
+                                                document.write("<option>" + m + "</option>")
+                                            }
+                                        </script>
+                                    </select>
+                                </td>
+                                <td>起始月份:
+                                    <select id="start_month" value="起始年份">
+                                        <script>
+                                            for (let m = 1; m < 13; m++) {
+                                                document.write("<option>" + m + "</option>")
+                                            }
+                                        </script>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>结束年份:
+                                    <select id="end_year" value="结束年份">
+                                        <script>
+                                            for (let m = 1981; m < 2020; m++) {
+                                                document.write("<option>" + m + "</option>")
+                                            }
+                                        </script>
+                                    </select>
+                                </td>
+                                <td>结束月份:
+                                    <select id="end_month" value="结束年份">
+                                        <script>
+                                            for (let m = 1; m < 13; m++) {
+                                                document.write("<option>" + m + "</option>")
+                                            }
+                                        </script>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+
+                <!--经纬度设置的box-->
+                <div class="location_box">
+                    <form method="POST">
+                        <table class="time">
+                            <tr>
+                                <th colspan="3">图形区域</th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>北：<input type="text" value="90" id="north"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>西：<input type="text" value="0" id="west"></td>
+                                <td></td>
+                                <td>东：<input type="text" value="360" id="east"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>南：<input type="text" value="-90" id="south"></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+
+                <!--提交的button-->
+                <div class="submit">
+                    <button type="button" style="font-size: 23px">绘图</button>
+                </div>
+            </div>
+
+            <!-- 右下侧内容去 -->
+            <div class="right">
+                <div class="drawing" style="text-align: center;">
+                    <div class="huituzhong">绘图中，请稍后...</div>
+                </div>
+                <div class="pic"></div>
+                <div class="pic_result"></div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+<script type="text/javascript" src="../static/js/base.js"></script>
+<script type="text/javascript" src="../static/js/ajax.js"></script>
+</html>
