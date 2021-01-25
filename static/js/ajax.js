@@ -37,15 +37,15 @@ btn.onclick = function(){
     params = params + "&north=" + north
     params = params + "&south=" + south
     console.log(params)
-    xhr.open('post', 'http://192.168.0.2:5000/draw_pic')
+    xhr.open('get', 'http://192.168.0.2:5000/draw_pic?' + params)
     // 发送请求
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send(params);
+    // xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send();
     // 获取服务器端响应的数据
     xhr.onload = function () {
         drawing.style.display = "none"
         pic_temp.style.display = "none"
-        pic_result.style.backgroundImage = "url(http://192.168.0.2:5000/draw_pic)"
+        pic_result.style.backgroundImage = "url(http://192.168.0.2:5000/draw_pic?"+params+")"
         pic_result.style.display = 'block'
     }
 }

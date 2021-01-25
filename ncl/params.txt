@@ -1,6 +1,6 @@
 1981
 1
-1981
+1998
 2
 90
 -90
@@ -8,4 +8,4 @@
 360
 ERA5_Monthly
 sst
-Mean SST(degC) from Jan. to Feb. 1981
+Mean SST(degC) from Jan. to Feb. 1981-1998
