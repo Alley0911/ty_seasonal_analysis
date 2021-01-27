@@ -1,8 +1,7 @@
 var btn = $("button")[0];
 var drawing = $(".drawing")[0]
-var pic_result = $(".pic_result")[0]
-var pic_temp = $(".pic")[0]
-
+var pic = $(".pic")[0]
+var img = $("img")[0]
 
 btn.onclick = function(){
     var data_selected = $(".data_name")[0].innerText;
@@ -12,7 +11,6 @@ btn.onclick = function(){
     var start_month_selected = $("#start_month option:selected").val();
     var end_year_selected = $("#end_year option:selected").val();
     var end_month_selected = $("#end_month option:selected").val();
-
     var north = document.getElementById("north").value;
     var south = document.getElementById("south").value;
     var east = document.getElementById("east").value;
@@ -21,7 +19,7 @@ btn.onclick = function(){
 
     // 让绘图中的gif显示
     drawing.style.display = "block"
-
+    pic.style.display = "none"
     // 创建ajax对象
     var xhr = new XMLHttpRequest();
     // 配置ajax对象
@@ -37,15 +35,15 @@ btn.onclick = function(){
     params = params + "&north=" + north
     params = params + "&south=" + south
     console.log(params)
-    xhr.open('get', 'http://192.168.0.2:5000/draw_pic?' + params)
+
+    xhr.open('get', '/draw_pic?' + params)
     // 发送请求
     // xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send();
     // 获取服务器端响应的数据
     xhr.onload = function () {
         drawing.style.display = "none"
-        pic_temp.style.display = "none"
-        pic_result.style.backgroundImage = "url(http://192.168.0.2:5000/draw_pic?"+params+")"
-        pic_result.style.display = 'block'
+        pic.style.display = "table-cell"
+        img.src = "/draw_pic?"+params
     }
 }

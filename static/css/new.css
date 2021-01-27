@@ -126,7 +126,7 @@ div.container{align-items: center;width:1500px;margin: 0 auto;}
                 display: block;
                 text-align: center;
             }
-        div.right{background-color: rgb(78, 69, 54);height: 750px;width:1198px;float: left;}
+        div.right{background-color: rgb(78, 69, 54);height: 700px;width:1198px;float: left;}
             div.contain_menu{background-color: rgb(243, 235, 222);height: 150px;width: 1198px;}
 
             div.drawing{
@@ -140,7 +140,7 @@ div.container{align-items: center;width:1500px;margin: 0 auto;}
             }
             div.huituzhong{
                 height: 750px;
-                line-height: 700px;
+                line-height: 750px;
                 font-size: 25px;
                 width: 1198px;
                 text-align: center;
@@ -149,11 +149,18 @@ div.container{align-items: center;width:1500px;margin: 0 auto;}
             }
             div.pic{
                 background-color: white;height: 750px;width: 1198px;
-                background-image: url(../img/1.jpg);
+                /*background-image: url(../img/1.jpg);*/
                 /* background-attachment: fixed; */
-                background-position: center center;
+                /*background-position: center center;*/
                 background-repeat: no-repeat;
+                display: table-cell;
+                text-align: center;
+                vertical-align: middle;
 
+            }
+            img{
+                width:1198px;
+                height:750px
             }
             div.pic_result{
                 background-color: white;height: 750px;width: 1198px;

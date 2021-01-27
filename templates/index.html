@@ -61,8 +61,8 @@
                                 <tr>
                                     <td><label><input type="radio" name="var_type" levels="0" value="sst_anomaly">海温异常</label></td>
                                 </tr>
-                                <tr>
-                                    <td><label><input type="radio" name="var_type" levels="2" value="height">高度</label></td>
+                                <tr style="display: none">
+                                    <td><label><input type="radio" name="var_type" levels="2" value="height" >高度</label></td>
                                 </tr>
                                 <tr>
                                     <td><label><input type="radio" name="var_type" levels="13" value="wind">风</label></td>
@@ -80,6 +80,9 @@
                                 <tr>
                                     <td><label><input type="radio" name="var_type" levels="0" value="frequency">频数</label></td>
                                 </tr>
+                                <tr>
+                                    <td><label><input type="radio" name="var_type" levels="0" value="adding">待补充</label></td>
+                                </tr>
                             </table>
                         </form>
                     </div>
@@ -94,13 +97,13 @@
                                     <label ><input type="radio" name="level_type" value="no_level">无定义</label>
                                 </p >                                
                                 <p style="display:none; ">
-                                    <label ><input type="radio" name="level_type" value="850hPa">850hPa</label>
+                                    <label ><input type="radio" name="level_type" value="850">850hPa</label>
                                 </p>                                
                                 <p style="display:none; ">
-                                    <label ><input type="radio" name="level_type" value="500hPa">500hPa</label>
+                                    <label ><input type="radio" name="level_type" value="500">500hPa</label>
                                 </p>  
                                 <p style="display:none; ">
-                                    <label ><input type="radio" name="level_type" value="200hPa">200hPa</label>
+                                    <label ><input type="radio" name="level_type" value="200">200hPa</label>
                                 </p>
                         </form>
                     </div>
@@ -170,17 +173,17 @@
                             </tr>
                             <tr>
                                 <td></td>
-                                <td>北：<input type="text" value="90" id="north"></td>
+                                <td>北：<input type="text" value="50" id="north"></td>
                                 <td></td>
                             </tr>
                             <tr>
-                                <td>西：<input type="text" value="0" id="west"></td>
+                                <td>西：<input type="text" value="60" id="west"></td>
                                 <td></td>
-                                <td>东：<input type="text" value="360" id="east"></td>
+                                <td>东：<input type="text" value="300" id="east"></td>
                             </tr>
                             <tr>
                                 <td></td>
-                                <td>南：<input type="text" value="-90" id="south"></td>
+                                <td>南：<input type="text" value="-50" id="south"></td>
                                 <td></td>
                             </tr>
                         </table>
@@ -193,13 +196,12 @@
                 </div>
             </div>
 
-            <!-- 右下侧内容去 -->
+            <!-- 右下侧内容区 -->
             <div class="right">
                 <div class="drawing" style="text-align: center;">
                     <div class="huituzhong">绘图中，请稍后...</div>
                 </div>
-                <div class="pic"></div>
-                <div class="pic_result"></div>
+                <div class="pic"><img src="static/img/1.jpg"></div>
             </div>
         </div>
 

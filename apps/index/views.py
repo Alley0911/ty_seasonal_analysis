@@ -5,21 +5,7 @@
 from flask import Blueprint, render_template, request, make_response, jsonify, send_file
 import time
 import os
-
-dict_month = {
-	"1": "Jan.",
-	"2": "Feb.",
-	"3": "Mar.",
-	"4": "Apr.",
-	"5": "May",
-	"6": "Jun",
-	"7": "Jul.",
-	"8": "Aug.",
-	"9": "Sep.",
-	"10": "Oct.",
-	"11": "Nov.",
-	"12": "Dec."
-}
+from apps.index.func import *
 
 index_bp = Blueprint('index', __name__)
 
@@ -44,17 +30,10 @@ def draw_pic():
 	south = request.args.get("south")
 	west = request.args.get("west")
 	east = request.args.get('east')
-	if start_month == end_month and start_year != end_year:
-		leftString = "Mean SST(degC) in " + dict_month[str(start_month)] + " " + str(start_year) + "-" + str(end_year)
-	elif start_year == end_year and start_month != end_month:
-		leftString = "Mean SST(degC) from " + dict_month[str(start_month)] + " to " + dict_month[str(end_month)] + " " + str(start_year)
-	elif start_year == end_year and start_month == end_month:
-		leftString = "Mean SST(degC) in " + dict_month[str(start_month)] + " " + str(start_year)
-	else:
-		leftString = "Mean SST(degC) from " + dict_month[str(start_month)] + " to " + dict_month[str(end_month)] + " " + str(start_year) + "-" + str(end_year)
 	data = request.args.get("data")
 	var = request.args.get('var')
-	print(request.args)
+	level = request.args.get("level")
+	leftString = get_pic_title(var, start_year, end_year, start_month, end_month, level)
 	with open("/home/alley/work/tyanalyse/project/ncl/params.txt", 'w') as fout:
 		fout.write(start_year + "\n")
 		fout.write(start_month + "\n")
@@ -66,8 +45,25 @@ def draw_pic():
 		fout.write(east + "\n")
 		fout.write(data + "\n")
 		fout.write(var + "\n")
-		fout.write(leftString)
-	os.system("ncl /home/alley/work/tyanalyse/project/ncl/sst.ncl")
+		fout.write(leftString + "\n")
+		fout.write(level)
+
+
+	if var == "sst":
+		os.system("ncl /home/alley/work/tyanalyse/project/ncl/sst.ncl")
+	elif var == "height":
+		os.system("ncl /home/alley/work/tyanalyse/project/ncl/height.ncl")
+	elif var == "sst_anomaly":
+		os.system("ncl /home/alley/work/tyanalyse/project/ncl/sst_anomaly.ncl")
+	elif var == "wind":
+		os.system("ncl /home/alley/work/tyanalyse/project/ncl/wind.ncl")
+	elif var == 'frequency':
+		draw_frequency(start_year, start_month, end_year, end_month)
+
+	if var != "frequency":
+		im = io.imread("/home/alley/work/tyanalyse/project/local_pic/result.png")
+		img_re = corp_margin(im)
+		io.imsave('/home/alley/work/tyanalyse/project/local_pic/result.png', img_re)
 
 	return send_file("/home/alley/work/tyanalyse/project/local_pic/result.png")
 
