@@ -5,7 +5,40 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.ticker import  MultipleLocator
 from matplotlib.ticker import  FormatStrFormatter
+import re
+from datetime import datetime
+from mongoengine import *
+import matplotlib as mpl
+import cartopy.crs as ccrs
+import matplotlib.ticker as mticker
+from cartopy.mpl.gridliner import LONGITUDE_FORMATTER, LATITUDE_FORMATTER
+from cartopy.mpl.ticker import LongitudeFormatter, LatitudeFormatter
+import cartopy.feature as cfeature
 
+
+connect(db='cma', alias='cma', host='mongodb://192.168.0.2:27017/')
+# 用于记录每个台风的信息
+class Record(EmbeddedDocument):
+    line_id = IntField(required=True)
+    date = DateTimeField(required=True)
+    grade = StringField(required=True)
+    loc = PointField(required=True)
+    slp = FloatField(required=True)
+    v = FloatField(required=True)
+
+# 当创建实例后会自动添加一个typhoons的集合
+class Typhoons(DynamicDocument):
+    name = StringField(required=True)
+    ty_id = IntField(required=True, unique=True)
+    is_land = BooleanField(required=True)  # 是否登陆
+    records = ListField(EmbeddedDocumentField(Record))
+    generation_year = IntField(required=True)  # 生成的年份
+    generation_month = IntField(required=True)  # 生成的月份
+    generation_loc = PointField(required=True)  # 生成经纬度
+    duration = FloatField(required=True)  # 持续时间及生命周期，单位为天
+    meta={
+        'db_alias': 'cma'
+    }
 
 dict_month = {
 	"1": "Jan.",
@@ -22,18 +55,28 @@ dict_month = {
 	"12": "Dec."
 }
 
+
 def get_pic_title(var, start_year, end_year, start_month, end_month, level):
     if var == "sst":
-        var_part = "Mean SST(degC) in "
+        var_part = "SST(degC) in "
     elif var == "height":
-        var_part = "Mean Height(dagpm) in "
+        var_part = "Height(dagpm) in "
+    elif var == "height_anomaly":
+        var_part = "Height Anomaly(dagpm) in "
+    elif var == "slp_anomaly":
+        var_part = "Sea Level Pressure Anomaly(hPa) in "
     elif var == "sst_anomaly":
-        var_part = "Mean SST Anomaly(degC) in "
+        var_part = "SST Anomaly(degC) in "
     elif var == "wind":
         if level == "850":
-            var_part = "Mean 850hPa Wind(m/s) in "
+            var_part = "850hPa Wind(m/s) in "
         elif level == "200":
-            var_part = "Mean 200hPa Wind(m/s) in "
+            var_part = "200hPa Wind(m/s) in "
+    elif var == "wind_anomaly":
+        if level == "850":
+            var_part = "850hPa Wind Anomaly(m/s) in "
+        elif level == "200":
+            var_part = "200hPa Wind Anomaly(m/s) in "
     else:
         var_part = "None"
 
@@ -48,7 +91,6 @@ def get_pic_title(var, start_year, end_year, start_month, end_month, level):
         leftString = var_part + dict_month[str(start_month)] + " to " + dict_month[
             str(end_month)] + " " + str(start_year) + "-" + str(end_year)
     return leftString
-
 
 def corp_margin(img):
     img2=img.sum(axis=2)
@@ -80,7 +122,8 @@ def corp_margin(img):
     new_img=img[row_top-10:raw_down+10,col_top-10:col_down+10,0:3]
     return new_img
 
-def draw_frequency(start_year, start_month, end_year, end_month):
+# 旧的读文件的画法
+# def draw_frequency(start_year, start_month, end_year, end_month):
     # 这两个参数的默认可使列名对齐
     pd.set_option('display.unicode.ambiguous_as_wide', True)
     pd.set_option('display.unicode.east_asian_width', True)
@@ -165,7 +208,11 @@ def draw_frequency(start_year, start_month, end_year, end_month):
     ax1.plot(x, y, color="r", linewidth=2.0)
     ax1.plot(x, y11, color="blue", linewidth=2.0, linestyle="--", label="mean")
     ax1.scatter(x, y, s=50, c="r", alpha=1, )
-    # ax1.text(2018, y1_avg-3, y1_avg, c="blue")
+    ax1.text(x[-2], y11[0]-0.5, format(y11[0],'.1f'), c="blue")
     ax1.legend()
     plt.grid(axis='y')  # 添加网格
     plt.savefig("/home/alley/work/tyanalyse/project/local_pic/result.png", dpi=300, bbox_inches='tight')
+
+
+
+

@@ -9,8 +9,10 @@ north = stringtoint(args(4))
 south = stringtoint(args(5))
 west = stringtoint(args(6))
 east = stringtoint(args(7))
+data = (args(8))
+var = (args(9))
 leftstring = (args(10))
-filepath = "/home/alley/data/ERA5_monthly/SST/"
+filepath = "/home/alley/data/" + data + "/SST/"
 pic_name = "/home/alley/work/tyanalyse/project/local_pic/result"
 
 ; 根据时间获取所需要目标场的文件
@@ -20,9 +22,9 @@ n = 0
 do y = start_year, end_year
     do m = start_month, end_month
         if (m .le. 9) then
-            files_cur(n) = filepath + "sst_" + y + "0" + m + ".nc"
+            files_cur(n) = filepath + "sst_" + y + "0" + m + ".grb"
         else
-            files_cur(n) = filepath + "sst_" + y + m + ".nc"
+            files_cur(n) = filepath + "sst_" + y + m + ".grb"
         end if
         n = n + 1
     end do
@@ -35,9 +37,9 @@ n = 0
 do y = 1981, 2010
     do m = start_month, end_month
         if (m .le. 9) then
-            files_cli(n) = filepath + "sst_" + y + "0" + m + ".nc"
+            files_cli(n) = filepath + "sst_" + y + "0" + m + ".grb"
         else
-            files_cli(n) = filepath + "sst_" + y + m + ".nc"
+            files_cli(n) = filepath + "sst_" + y + m + ".grb"
         end if
         n = n + 1
     end do
@@ -83,12 +85,17 @@ res@tmYROn = False
 res@cnFillOn            =  True         ;-- contour fill
 res@cnLinesOn           =  False
 res@cnLineLabelsOn      =  False
+res@mpShapeMode = "FreeAspect"
+res@vpWidthF = 0.8
+res@vpHeightF = 0.6
+res@vpXF = 0.1
+res@vpYF = 0.8
 res@mpMaxLatF = north
 res@mpMinLatF = south
 res@mpMaxLonF = east
 res@mpMinLonF = west
 res@tiMainString = leftstring
-res@tiMainOffsetYF = -0.015
+res@tiMainOffsetYF = -0.02
 res@cnFillPalette       = "BlueDarkRed18"     ;-- choose color map
 res@mpGridAndLimbOn     =  False         ;-- draw grid lines
 res@mpCenterLonF        =  150

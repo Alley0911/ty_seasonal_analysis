@@ -13,9 +13,11 @@ north = stringtoint(args(4))
 south = stringtoint(args(5))
 west = stringtoint(args(6))
 east = stringtoint(args(7))
+data = (args(8))
+var = (args(9))
 leftstring = (args(10))
 level = stringtoint(args(11))
-filepath = "/home/alley/data/ERA5_monthly/Height/"
+filepath = "/home/alley/data/" + data + "/Height/"
 pic_name = "/home/alley/work/tyanalyse/project/local_pic/result"
 
 ; 获取需要的文件名
@@ -25,9 +27,9 @@ n = 0
 do y = start_year, end_year
     do m = start_month, end_month
         if (m .le. 9) then
-            files_cur(n) = filepath + "height_" + y + "0" + m + ".nc"
+            files_cur(n) = filepath + "height_" + y + "0" + m + ".grb"
         else
-            files_cur(n) = filepath + "height_" + y + m + ".nc"
+            files_cur(n) = filepath + "height_" + y + m + ".grb"
         end if
         n = n + 1
     end do
@@ -35,18 +37,30 @@ end do
 
 
 ; 获取目标场的平均
-f_cur    = addfiles(files_cur, "r")
-ListSetType(f_cur, "join")
-height_cur = f_cur[:]->z(:,0,{level},:,:)
-printVarSummary(height_cur)
-height_avg_cur_tmp = dim_avg_n_Wrap(height_cur, 0)
-height_avg_cur = (height_avg_cur_tmp*1.75+66311.772) /98
-copy_VarCoords(height_avg_cur_tmp, height_avg_cur)
+f    = addfiles (files_cur, "r")
+ListSetType(f, "join")
+height = f[:]->Z_GDS0_ISBL_S123
+; printVarSummary(height)
+height = height/98
+
+if dimsizes(files_cur) .eq. 1 then
+    ; print(dimsizes(files))
+    height_avg = height
+else
+    height_avg = dim_avg_n_Wrap(height, 0)
+end if
+height_avg@long_name = ""
+height_avg@units = ""
 
 wks = gsn_open_wks("png", pic_name)                  ; send graphics to PNG file
 res = True
 res@gsnDraw = False
 res@gsnFrame = False
+res@mpShapeMode = "FreeAspect"
+res@vpWidthF = 0.8
+res@vpHeightF = 0.6
+res@vpXF = 0.1
+res@vpYF = 0.8
 res@mpMaxLatF = north
 res@mpMinLatF = south
 res@mpMinLonF = west
@@ -54,8 +68,10 @@ res@mpMaxLonF = east
 res@tmXTOn = False
 res@tmYROn = False
 res@mpCenterLonF = 150
+; res@tiMainFontHeightF = 0.022
+res@tiMainOffsetYF = -0.02
 res@cnLevelSelectionMode="ExplicitLevels"
-res@cnLevels=ispan(500, 640, 4)
+res@cnLevels = ispan(500, 640, 4)
 ; res@cnMonoLineThickness = False
 ; res@cnLineThicknesses = 
 res@tiMainString = leftstring
@@ -65,7 +81,7 @@ res@cnInfoLabelOn=False
 res@cnLineColor="blue"
 res@cnLineLabelInterval=1
 res@cnLineLabelFontHeightF=0.010
-plot = gsn_csm_contour_map_ce(wks, height_avg_cur, res)         ; create a default plot
+plot = gsn_csm_contour_map_ce(wks, height_avg, res)         ; create a default plot
 dir      = "/home/alley/data/ncl/GSHHS_shp/"
 filename = "l/GSHHS_l_L1.shp"
 dum  = gsn_add_shapefile_polylines(wks,plot,dir+filename,True)

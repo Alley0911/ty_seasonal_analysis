@@ -1,0 +1,82 @@
+[{
+  "var_cn_name": "海温",
+  "var_en_name": "sst",
+  "data_name": "ERA5_Monthly",
+  "level": ["无定义"],
+  "level_code": ["none"],
+  "start_time": "1981-01-01",
+  "end_time": "2021-02-31",
+  "time_type": "year_month"
+  },
+  {
+  "var_cn_name": "海温异常",
+  "var_en_name": "sst_anomaly",
+  "data_name": "ERA5_Monthly",
+  "level": ["无定义"],
+  "level_code": ["none"],
+  "start_time": "1981-01-01",
+  "end_time": "2021-02-31",
+  "time_type": "year_month"
+  },
+  {
+  "var_cn_name": "高度",
+  "var_en_name": "height",
+  "data_name": "ERA5_Monthly",
+  "level": ["500hPa"],
+  "level_code": ["500"],
+  "start_time": "1981-01-01",
+  "end_time": "2021-02-31",
+  "time_type": "year_month"
+  },
+  {
+  "var_cn_name": "高度及异常",
+  "var_en_name": "height_anomaly",
+  "data_name": "ERA5_Monthly",
+  "level": ["500hPa"],
+  "level_code": ["500"],
+  "start_time": "1981-01-01",
+  "end_time": "2021-02-31",
+  "time_type": "year_month"
+  },
+  {
+  "var_cn_name": "风",
+  "var_en_name": "wind",
+  "data_name": "ERA5_Monthly",
+  "level": ["850hPa", "200hPa"],
+  "level_code": ["850","200"],
+  "start_time": "1981-01-01",
+  "end_time": "2019-12-31",
+  "time_type": "year_month"
+  },
+  {
+  "var_cn_name": "风异常",
+  "var_en_name": "wind_anomaly",
+  "data_name": "ERA5_Monthly",
+  "level": ["850hPa", "200hPa"],
+  "level_code": ["850","200"],
+  "start_time": "1981-01-01",
+  "end_time": "2019-12-31",
+  "time_type": "year_month"
+  },
+  {
+  "var_cn_name": "海平面气压及异常",
+  "var_en_name": "slp_anomaly",
+  "data_name": "ERA5_Monthly",
+  "level": ["无定义"],
+  "level_code": ["none"],
+  "start_time": "1981-01-01",
+  "end_time": "2021-02-31",
+  "time_type": "year_month"
+  },
+  {
+  "var_cn_name": "频数",
+  "var_en_name": "frequency",
+  "data_name": "CMA",
+  "level": ["无定义"],
+  "level_code": ["none"],
+  "start_time": "1981-01-01",
+  "end_time": "2020-12-31",
+  "time_type": "year_month"
+  }
+  ]
+

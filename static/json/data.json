@@ -1,0 +1,28 @@
+[{
+  "data_name": "ERA5_Monthly",
+  "data_type": "reanalysis",
+  "start_time": "1981-01-01",
+  "end_time": "2020-12-31",
+  "time_type": "year_month"
+  },
+  {
+  "data_name": "ERA5_Hourly",
+  "data_type": "reanalysis",
+  "start_time": "1981-01-01",
+  "end_time": "2020-12-31",
+  "time_type": "year_month_day"
+  },
+{
+  "data_name": "CMA",
+  "data_type": "tc_best_track",
+  "start_time": "1981-01-01",
+  "end_time": "2020-12-31",
+  "time_type": "year_month"
+  },
+{
+  "data_name": "JMA",
+  "data_type": "tc_best_track",
+  "start_time": "1981-01-01",
+  "end_time": "2020-12-31",
+  "time_type": "year_month"
+  }]

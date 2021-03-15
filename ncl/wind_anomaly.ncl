@@ -14,27 +14,46 @@ leftstring = (args(10))
 level = (args(11))
 filepath = "/home/alley/data/" + data + "/UV/"
 number = (end_year - start_year + 1) * (end_month - start_month +1)
-
 pic_name = "/home/alley/work/tyanalyse/project/local_pic/result"
-files = new(number, string)
+
+; 根据时间获取所需要目标场的文件
+number = (end_year - start_year + 1) * (end_month - start_month +1)
+files_cur = new(number, string)
 n = 0
 do y = start_year, end_year
     do m = start_month, end_month
         if (m .le. 9) then
-            files(n) = filepath + "uv_" + level + "_" + y + "0" + m + ".grb"
+            files_cur(n) = filepath + "uv_" + level + "_" + y + "0" + m + ".grb"
         else
-            files(n) = filepath + "uv_" + level + "_" + y + m + ".grb"
+            files_cur(n) = filepath + "uv_" + level + "_" + y + m + ".grb"
         end if
         n = n + 1
     end do
 end do
-; print(files)
-f    = addfiles (files, "r")
+
+; 根据时间获取所需要的气候态的文件
+number = 30 * (end_month - start_month +1)
+files_cli = new(number, string)
+n = 0
+do y = 1981, 2010
+    do m = start_month, end_month
+        if (m .le. 9) then
+            files_cli(n) = filepath + "uv_" + level + "_" + y + "0" + m + ".grb"
+        else
+            files_cli(n) = filepath + "uv_" + level + "_" + y + m + ".grb"
+        end if
+        n = n + 1
+    end do
+end do
+
+
+; 获取目标场的平均
+f    = addfiles (files_cur, "r")
 ListSetType(f, "join")
 
 u = f[:]->U_GDS0_ISBL_S123
 ; printVarSummary(u)
-if dimsizes(files) .eq. 1 then
+if dimsizes(files_cur) .eq. 1 then
     ; print(dimsizes(files))
     u_avg = u
 else
@@ -42,16 +61,26 @@ else
 end if
 v = f[:]->V_GDS0_ISBL_S123
 ; printVarSummary(u)
-if dimsizes(files) .eq. 1 then
+if dimsizes(files_cur) .eq. 1 then
     ; print(dimsizes(files))
     v_avg = v
 else
     v_avg = dim_avg_n_Wrap(u, 0)
 end if
+
+; 获取气候场的平均
+f_cli    = addfiles (files_cli, "r")
+ListSetType(f_cli, "join")
+u_cli = f_cli[:]->U_GDS0_ISBL_S123
+u_avg_cli = dim_avg_n_Wrap(u_cli, 0)
+v_cli = f_cli[:]->V_GDS0_ISBL_S123
+v_avg_cli = dim_avg_n_Wrap(v_cli, 0)
+
+; 求异常场
+u_avg = u_avg - u_avg_cli
+v_avg = v_avg - v_avg_cli
 speed_avg = u_avg
 speed_avg = sqrt(u_avg*u_avg + v_avg*v_avg)
-u_avg@long_name = ""
-u_avg@units = ""
 u_avg@long_name = ""
 u_avg@units = ""
 v_avg@long_name = ""
@@ -59,8 +88,8 @@ v_avg@units = ""
 speed_avg@long_name = ""
 speed_avg@units = ""
 
-wks  = gsn_open_wks("png",pic_name) ; send graphics to PNG file
 
+wks  = gsn_open_wks("png",pic_name) ; send graphics to PNG file
 cnres                             = True
 ; cnres@gsnMaximize                 = True
 cnres@gsnDraw                     = False

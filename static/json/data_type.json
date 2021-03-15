@@ -1,0 +1,10 @@
+[{
+  "data_type": "reanalysis",
+  "ch_name": "再分析数据",
+  "data_list": ["ERA5_Monthly", "ERA5_Hourly"]
+  },
+{
+  "data_type": "tc_best_track",
+  "ch_name": "台风最佳路径集",
+  "data_list": ["CMA"]
+  }]

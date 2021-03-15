@@ -57,7 +57,7 @@ for (var i = 0; i < data_menu_title.length; i++) {
 
                 //获取选中的数据名，并根据数据名，显示变量和level的内容
                 index2 =  li[ii].getAttribute("index")
-                if(index2 == "era5_monthly"){
+                if(index2 == "era5_monthly" || index2 == "era5_hourly"){
                     var_list[0].style.display = "block"
                 }
                 if(index2 == "ty_cma"){

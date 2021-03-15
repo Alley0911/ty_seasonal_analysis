@@ -1,12 +1,12 @@
 1981
-2
+1
 2019
-2
-30
--30
+12
+50
+-50
 60
 300
-ERA5月平均
-wind
-Mean 850hPa Wind(m/s) in Feb. 1981-2019
-850
+CMA
+frequency
+NoneJan. to Dec. 1981-2019
+none
