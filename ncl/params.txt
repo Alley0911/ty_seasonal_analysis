@@ -1,12 +1,12 @@
-1981
-1
-2019
+2020
+12
+2020
 12
 50
 -50
 60
 300
-CMA
-frequency
-NoneJan. to Dec. 1981-2019
+ERA5_Monthly
+slp_anomaly
+Sea Level Pressure Anomaly(hPa) in Dec. 2020
 none

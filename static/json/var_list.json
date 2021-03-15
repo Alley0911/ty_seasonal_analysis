@@ -75,7 +75,97 @@
   "level": ["无定义"],
   "level_code": ["none"],
   "start_time": "1981-01-01",
-  "end_time": "2020-12-31",
+  "end_time": "2019-12-31",
+  "time_type": "year_month"
+  },
+  {
+  "var_cn_name": "ACE",
+  "var_en_name": "ace",
+  "data_name": "CMA",
+  "level": ["无定义"],
+  "level_code": ["none"],
+  "start_time": "1981-01-01",
+  "end_time": "2019-12-31",
+  "time_type": "year_month"
+  },
+  {
+  "var_cn_name": "ACE分布",
+  "var_en_name": "ace_distribution",
+  "data_name": "CMA",
+  "level": ["无定义"],
+  "level_code": ["none"],
+  "start_time": "1981-01-01",
+  "end_time": "2019-12-31",
+  "time_type": "year_month"
+  },
+  {
+  "var_cn_name": "路径密度分布",
+  "var_en_name": "track_density",
+  "data_name": "CMA",
+  "level": ["无定义"],
+  "level_code": ["none"],
+  "start_time": "1981-01-01",
+  "end_time": "2019-12-31",
+  "time_type": "year_month"
+  },
+  {
+  "var_cn_name": "路径图",
+  "var_en_name": "tracks",
+  "data_name": "CMA",
+  "level": ["无定义"],
+  "level_code": ["none"],
+  "start_time": "1981-01-01",
+  "end_time": "2019-12-31",
+  "time_type": "year_month"
+  },
+  {
+  "var_cn_name": "台风平均纬度",
+  "var_en_name": "mean_lat",
+  "data_name": "CMA",
+  "level": ["无定义"],
+  "level_code": ["none"],
+  "start_time": "1981-01-01",
+  "end_time": "2019-12-31",
+  "time_type": "year_month"
+  },
+  {
+  "var_cn_name": "台风平均经度",
+  "var_en_name": "mean_lon",
+  "data_name": "CMA",
+  "level": ["无定义"],
+  "level_code": ["none"],
+  "start_time": "1981-01-01",
+  "end_time": "2019-12-31",
+  "time_type": "year_month"
+  },
+  {
+  "var_cn_name": "台风生成地分布",
+  "var_en_name": "generation_location",
+  "data_name": "CMA",
+  "level": ["无定义"],
+  "level_code": ["none"],
+  "start_time": "1981-01-01",
+  "end_time": "2019-12-31",
+  "time_type": "year_month"
+  },
+  {
+  "var_cn_name": "生成地经度",
+  "var_en_name": "generation_lon",
+  "data_name": "CMA",
+  "level": ["无定义"],
+  "level_code": ["none"],
+  "start_time": "1981-01-01",
+  "end_time": "2019-12-31",
+  "time_type": "year_month"
+  },
+  {
+  "var_cn_name": "生成地纬度",
+  "var_en_name": "generation_lon",
+  "data_name": "CMA",
+  "level": ["无定义"],
+  "level_code": ["none"],
+  "start_time": "1981-01-01",
+  "end_time": "2019-12-31",
   "time_type": "year_month"
   }
   ]

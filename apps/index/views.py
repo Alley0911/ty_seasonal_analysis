@@ -7,6 +7,7 @@ import time
 import os
 from apps.index.func import *
 
+
 index_bp = Blueprint('index', __name__)
 
 
@@ -73,10 +74,15 @@ def draw_pic():
 		os.system("ncl /home/alley/work/tyanalyse/project/ncl/wind.ncl")
 	elif var == "wind_anomaly":
 		os.system("ncl /home/alley/work/tyanalyse/project/ncl/wind_anomaly.ncl")
-	elif var == 'frequency':
-		draw_frequency(start_year, start_month, end_year, end_month)
+	if data=="CMA":
+		cmd = f"from apps.index.draw_pic.draw_{var} import *"
+		exec(cmd)
+		cmd = f"draw_{var}(start_year, start_month, end_year, end_month, '{leftString}')"
+		exec(cmd)
+#	第二批加的内容 2021.3.15
+	
 
-	if var != "frequency":
+	if data != "CMA":
 		im = io.imread("/home/alley/work/tyanalyse/project/local_pic/result.png")
 		img_re = corp_margin(im)
 		io.imsave('/home/alley/work/tyanalyse/project/local_pic/result.png', img_re)

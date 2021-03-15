@@ -2154,3 +2154,24 @@ KeyError: "Passing list-likes to .loc or [] with any missing labels is no longer
 dtype: int64
 [24.615384615384617, 24.615384615384617, 24.615384615384617, 24.615384615384617, 24.615384615384617, 24.615384615384617, 24.615384615384617, 24.615384615384617, 24.615384615384617, 24.615384615384617, 24.615384615384617, 24.615384615384617, 24.615384615384617, 24.615384615384617, 24.615384615384617, 24.615384615384617, 24.615384615384617, 24.615384615384617, 24.615384615384617, 24.615384615384617, 24.615384615384617, 24.615384615384617, 24.615384615384617, 24.615384615384617, 24.615384615384617, 24.615384615384617, 24.615384615384617, 24.615384615384617, 24.615384615384617, 24.615384615384617, 24.615384615384617, 24.615384615384617, 24.615384615384617, 24.615384615384617, 24.615384615384617, 24.615384615384617, 24.615384615384617, 24.615384615384617, 24.615384615384617]
 [pid: 2621081|app: 0|req: 12/13] 192.168.0.1 () {38 vars in 1081 bytes} [Mon Mar 15 17:59:55 2021] GET /draw_pic?data=CMA&var=frequency&level=none&time_type=year_month&start_time=1981-01&end_time=2019-12&east=300&west=60&north=50&south=-50 => generated 165009 bytes in 561 msecs via sendfile() (HTTP/1.1 200) 6 headers in 238 bytes (0 switches on core 0)
+[pid: 2621081|app: 0|req: 13/14] 192.168.0.1 () {40 vars in 970 bytes} [Mon Mar 15 19:54:38 2021] GET / => generated 5705 bytes in 0 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+*** Starting uWSGI 2.0.18 (64bit) on [Mon Mar 15 19:55:07 2021] ***
+compiled with version: 7.3.0 on 02 November 2019 12:17:38
+os: Linux-5.8.0-38-generic #43~20.04.1-Ubuntu SMP Tue Jan 12 16:39:47 UTC 2021
+nodename: alley-Server
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 8
+current working directory: /home/alley/work/tyanalyse/project
+writing pidfile to /home/alley/work/tyanalyse/project/uwsgi.pid
+detected binary path: /home/alley/anaconda3/bin/uwsgi
+chdir() to /home/alley/work/tyanalyse/project
+*** WARNING: you are running uWSGI without its master process manager ***
+your processes number limit is 63436
+your memory page size is 4096 bytes
+detected max file descriptor number: 1024
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+probably another instance of uWSGI is running on the same address (0.0.0.0:5000).
+bind(): Address already in use [core/socket.c line 769]

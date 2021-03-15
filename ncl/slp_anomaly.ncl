@@ -86,8 +86,8 @@ slp_ano@long_name = ""
 slp_ano@units = ""
 slp_avg_cur@long_name = ""
 slp_avg_cur@units = ""
-print(min(slp_ano))
-print(max(slp_ano))
+; print(min(slp_ano))
+; print(max(slp_ano))
 wks = gsn_open_wks("png", pic_name)                  ; send graphics to PNG file
 res = True
 res@gsnDraw           = False    ; Set to False so we can add 
