@@ -1,12 +1,12 @@
 2020
-12
+10
 2020
-12
+10
 50
 -50
 60
 300
 ERA5_Monthly
-slp_anomaly
-Sea Level Pressure Anomaly(hPa) in Dec. 2020
-none
+wind_anomaly
+200hPa Wind Anomaly(m/s) in Oct. 2020
+200

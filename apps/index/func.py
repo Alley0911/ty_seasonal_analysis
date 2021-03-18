@@ -45,6 +45,8 @@ def get_pic_title(var, start_year, end_year, start_month, end_month, level):
     elif var == "wind":
         if level == "850":
             var_part = "850hPa Wind(m/s) in "
+        elif level == "500":
+            var_part = "500hPa Wind(m/s) in "
         elif level == "200":
             var_part = "200hPa Wind(m/s) in "
     elif var == "wind_anomaly":
@@ -52,6 +54,8 @@ def get_pic_title(var, start_year, end_year, start_month, end_month, level):
             var_part = "850hPa Wind Anomaly(m/s) in "
         elif level == "200":
             var_part = "200hPa Wind Anomaly(m/s) in "
+        elif level == "500":
+            var_part = "500hPa Wind Anomaly(m/s) in "
     elif var == 'track_density':
         var_part = "Track Density of TCs in "
     elif var == 'ace_distribution':

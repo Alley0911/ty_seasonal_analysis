@@ -42,8 +42,8 @@
   "var_cn_name": "风",
   "var_en_name": "wind",
   "data_name": "ERA5_Monthly",
-  "level": ["850hPa", "200hPa"],
-  "level_code": ["850","200"],
+  "level": ["850hPa","500hPa", "200hPa"],
+  "level_code": ["850","500","200"],
   "start_time": "1981-01-01",
   "end_time": "2019-12-31",
   "time_type": "year_month"
@@ -52,8 +52,8 @@
   "var_cn_name": "风异常",
   "var_en_name": "wind_anomaly",
   "data_name": "ERA5_Monthly",
-  "level": ["850hPa", "200hPa"],
-  "level_code": ["850","200"],
+  "level": ["850hPa", "500hPa", "200hPa"],
+  "level_code": ["850","500","200"],
   "start_time": "1981-01-01",
   "end_time": "2019-12-31",
   "time_type": "year_month"

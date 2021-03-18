@@ -28,25 +28,26 @@ do y = start_year, end_year
         n = n + 1
     end do
 end do
-; print(files)
+print(files)
 f    = addfiles (files, "r")
 ListSetType(f, "join")
 
 u = f[:]->U_GDS0_ISBL_S123
-; printVarSummary(u)
+printVarSummary(u)
 if dimsizes(files) .eq. 1 then
     ; print(dimsizes(files))
     u_avg = u
 else
     u_avg = dim_avg_n_Wrap(u, 0)
 end if
+printVarSummary(u_avg)
 v = f[:]->V_GDS0_ISBL_S123
 ; printVarSummary(u)
 if dimsizes(files) .eq. 1 then
     ; print(dimsizes(files))
     v_avg = v
 else
-    v_avg = dim_avg_n_Wrap(u, 0)
+    v_avg = dim_avg_n_Wrap(v, 0)
 end if
 speed_avg = u_avg
 speed_avg = sqrt(u_avg*u_avg + v_avg*v_avg)

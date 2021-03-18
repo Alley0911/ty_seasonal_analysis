@@ -65,7 +65,7 @@ if dimsizes(files_cur) .eq. 1 then
     ; print(dimsizes(files))
     v_avg = v
 else
-    v_avg = dim_avg_n_Wrap(u, 0)
+    v_avg = dim_avg_n_Wrap(v, 0)
 end if
 
 ; 获取气候场的平均
